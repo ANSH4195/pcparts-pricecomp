@@ -1,0 +1,144 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+        <div class="search p-5 rounded shadow">
+            <form action="/results">
+                <div class="row mb-4">
+                    <div class="form-group col-md-9">
+                        <input type="text" placeholder="Search for something else!"
+                            class="form-control form-control-underlined" name="search_term">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <button type="submit" class="btn btn-primary rounded-pill btn-block shadow-sm">Search</button>
+                    </div>
+                </div>
+            </form>
+            <p class="small">
+                <em>Search <strong>"rtx 2080 ti"</strong> instead of "rtx 2080ti".
+                </em>
+            </p>
+            <p class="small">
+                <em>
+                    *Results may take upto 10 seconds to load, please be patient!
+                </em>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <table class="table table-borderless" style="width: 100%;">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 70%;">Name</th>
+                <th scope="col">From</th>
+                <th scope="col">Price</th>
+                <th scope="col">Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if result_mdcomp == None  %}
+            <tr>
+                <th scope="row">No Products found on MDcomputers</th>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            {% else %}
+            {% for entry in result_mdcomp %}
+            <tr>
+                <th scope="row">{{ entry.name }}</th>
+                <td>MDcomputers</td>
+                <td>₹ {{ entry.price }}</td>
+                <td>
+                    <a href="{{ entry.link }}" target="_blank">
+                        <button class="btn btn-primary rounded-pill btn-block shadow-sm">
+                            <strong>Go</strong>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div class="table">
+    <table class="table table-borderless" style="width: 100%;">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 70%;">Name</th>
+                <th scope="col">From</th>
+                <th scope="col">Price</th>
+                <th scope="col">Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if result_khrd == None  %}
+            <tr>
+                <th scope="row">No Products found on Kharidiye</th>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            {% else %}
+            {% for entry in result_khrd %}
+            <tr>
+                <th scope="row">{{ entry.name }}</th>
+                <td>Kharidiye</td>
+                <td>₹ {{ entry.price }}</td>
+                <td>
+                    <a href="{{ entry.link }}" target="_blank">
+                        <button class="btn btn-primary rounded-pill btn-block shadow-sm">
+                            <strong>Go</strong>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div class="table">
+    <table class="table table-borderless" style="width: 100%;">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 70%;">Name</th>
+                <th scope="col">From</th>
+                <th scope="col">Price</th>
+                <th scope="col">Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if result_prime == None  %}
+            <tr>
+                <th scope="row">No Products found on PrimeABGB</th>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            {% else %}
+            {% for entry in result_prime %}
+            <tr>
+                <th scope="row">{{ entry.name }}</th>
+                <td>PrimeABGB</td>
+                <td>₹ {{ entry.price }}</td>
+                <td>
+                    <a href="{{ entry.link }}" target="_blank">
+                        <button class="btn btn-primary rounded-pill btn-block shadow-sm">
+                            <strong>Go</strong>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
