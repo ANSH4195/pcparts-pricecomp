@@ -129,10 +129,12 @@ def search_prime(search_for):
         if all(x in title for x in search_for):
             d["name"] = title.upper()
 
-            price = str(
-                info.find_all(class_="woocommerce-Price-amount amount")[1].text).replace("₹", "")
-
-            d["price"] = int(price.replace(",", ""))
+            if(info.find(class_="woocommerce-Price-amount amount")):
+                price = str(
+                    info.find_all(class_="woocommerce-Price-amount amount")[1].text).replace("₹", "")
+                d["price"] = int(price.replace(",", ""))
+            else:
+                d["price"] = 999999999
 
             d["link"] = soup.find(
                 class_="product-name short").a['href']
@@ -142,5 +144,9 @@ def search_prime(search_for):
         data.append(d)
 
     data = sorted(data, key=lambda k: k['price'])
+
+    for entry in data:
+        if entry['price'] == 999999999:
+            entry['price'] = 'NA'
 
     return data
